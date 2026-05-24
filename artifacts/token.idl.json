@@ -235,12 +235,12 @@
     {
       "code": 2001,
       "name": "Unauthorized",
-      "msg": "Signer is not the current authority"
+      "msg": "Unauthorized: signer is not the current authority"
     },
     {
       "code": 2002,
       "name": "Renounced",
-      "msg": "Authority has been permanently revoked"
+      "msg": "Renounced: authority has been permanently revoked"
     }
   ]
 }

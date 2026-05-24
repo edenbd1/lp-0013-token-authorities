@@ -28,5 +28,5 @@ cargo test --workspace --release
 
 ## Reviewing pull requests
 
-- Read [`docs/decisions/`](./docs/decisions/) before reviewing authority-model changes.
+- Read [`docs/design.md`](./docs/design.md) before reviewing authority-model changes.
 - Run the demo (`scripts/demo.sh`) before approving anything that touches the program or the SDK.

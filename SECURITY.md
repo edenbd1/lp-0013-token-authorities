@@ -16,12 +16,10 @@ The following are in scope:
 - `crates/token-authority-core/` — authority model types and validation.
 - `crates/token-authority-program/` — on-chain program logic.
 - `crates/token-authority-sdk/` — host-side SDK for authority operations.
-- `crates/token-authority-cli/` — CLI tool.
 
 Out of scope:
 
 - Issues in upstream dependencies.
-- Issues in `_external/` (vendored reference repos; report upstream).
 
 ## Audit status
 

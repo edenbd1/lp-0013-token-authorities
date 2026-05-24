@@ -24,7 +24,7 @@ The mint authority model is layered **additively** on top of the existing LEZ To
 │      token-authority-program        │
 │  authority.rs handlers              │
 │  burn.rs · mint.rs (patched)        │
-│  50 unit tests                      │
+│  55 unit tests                      │
 └──────────────┬──────────────────────┘
                │ used by
 ┌──────────────▼──────────────────────┐

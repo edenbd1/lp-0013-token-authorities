@@ -24,6 +24,5 @@ The additional account in `MintWithAuthority` adds one nonce fetch and one signa
 ## On-Chain Storage
 
 `FungibleWithAuthority` occupies 33 bytes more than `Fungible` per definition account:
-- 1 byte: Borsh enum discriminant for `Authority`
-- 1 byte: `Option` discriminant
-- 32 bytes: `AccountId` (when active) or 0 bytes (when renounced, just the `None` discriminant)
+- 1 byte: `Option` discriminant inside `Authority(Option<AccountId>)` — `Some` when active, `None` when renounced
+- 32 bytes: `AccountId` payload (when active) or 0 bytes (when renounced, just the `None` discriminant)
