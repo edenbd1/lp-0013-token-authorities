@@ -1,0 +1,11 @@
+[package]
+name = "token-authority-sdk"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "SDK for constructing token authority transactions on LEZ"
+
+[dependencies]
+token-authority-core = { path = "../token-authority-core" }
+lez-approval = { path = "../lez-approval" }
+nssa_core = { git = "https://github.com/logos-blockchain/logos-execution-zone.git", rev = "006647b" }
