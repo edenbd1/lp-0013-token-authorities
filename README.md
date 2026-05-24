@@ -100,7 +100,7 @@ crates/
 examples/
   fixed-supply/               Mint-then-revoke pattern
   variable-supply/            Rotatable authority pattern
-integration_tests/            5 end-to-end handler-pipeline tests
+integration_tests/            6 end-to-end handler-pipeline tests
 artifacts/
   token.idl.json              Canonical IDL (SpelIdl format)
 scripts/
