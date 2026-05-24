@@ -9,8 +9,8 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 | Variable-size Tokens through minting authority: mint authority set at token initialization | `crates/token-authority-core/src/lib.rs` — `NewFungibleDefinitionWithAuthority` instruction variant. Handler: `crates/token-authority-program/src/authority.rs::new_fungible_definition_with_authority`. |
 | Minting by the authority | `MintWithAuthority` instruction. Handler: `authority.rs::mint_with_authority`. Authority is verified **cryptographically** via `is_authorized` on the pre_state account — not instruction data. |
 | Authority rotation and/or revocation | `RotateAuthority` (atomic single-field write) and `RevokeAuthority` (terminal — `Authority::renounced()` is a permanent sentinel). |
-| At least two example integrations | `examples/fixed-supply/` (mint everything, then revoke) and `examples/variable-supply/` (rotatable authority with ongoing minting). |
-| Self-sufficient agnostic library per RFP-001 | `crates/lez-approval/` — `Authority`, `ApprovalError`, `gate`/`rotate`/`revoke`. Depends only on `nssa_core::account::AccountId`. Reusable by any LEZ program. 13 unit tests. |
+| At least two example integrations | **Three examples:** `examples/fixed-supply/` (mint everything, then revoke), `examples/variable-supply/` (rotatable authority with ongoing minting), and `examples/config-pda-gate/` (RFP-001 §4 — gates a non-token config PDA behind admin authority, demonstrating the library's reusability beyond the token program). |
+| Self-sufficient agnostic library per RFP-001 | `crates/lez-approval/` — `Authority`, `ApprovalError`, `gate`/`rotate`/`revoke`. Depends only on `nssa_core::account::AccountId`. Reusable by any LEZ program. 13 unit tests. The `config-pda-gate` example demonstrates the library gating privileged instructions on a non-token program config PDA (RFP-001 §4). |
 
 ## Usability
 
@@ -38,7 +38,7 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 |---|---|
 | Updated token program deployed and tested on LEZ devnet/testnet | `scripts/demo.sh` runs the full lifecycle against a docker-compose standalone LEZ sequencer (run from the [LEZ fork](https://github.com/edenbd1/logos-execution-zone/tree/lp-0013-token-authorities)). |
 | End-to-end integration tests against LEZ sequencer in CI | `integration_tests/` — 6 handler-pipeline tests exercising the full pre_state → handler → post_state lifecycle (create+mint, rotate+mint, revoke+reject, wrong-signer reject, unsigned-authority reject, burn on authority tokens). Sequencer-level E2E via `scripts/demo.sh` in the LEZ fork. |
-| CI green on default branch | `.github/workflows/ci.yml` — build, clippy, fmt, test. All 76 tests pass. |
+| CI green on default branch | `.github/workflows/ci.yml` — build, clippy, fmt, test. All 76 tests pass. **[CI green](https://github.com/edenbd1/lp-0013-token-authorities/actions).** |
 | README documents end-to-end usage | `README.md` covers quickstart, architecture, CLI commands, deployment steps. `docs/` covers architecture, design, error codes, security, benchmarks. |
 | Reproducible demo with `RISC0_DEV_MODE=0` | `scripts/demo.sh` — full create → mint → rotate → mint → revoke → verify-rejection lifecycle (run from the LEZ fork). |
 | Narrated video walkthrough | _pending_ |

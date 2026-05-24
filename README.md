@@ -1,5 +1,7 @@
 # LP-0013: Token Program Improvements — Authorities
 
+[![CI](https://github.com/edenbd1/lp-0013-token-authorities/actions/workflows/ci.yml/badge.svg)](https://github.com/edenbd1/lp-0013-token-authorities/actions/workflows/ci.yml)
+
 A rotatable mint authority model for the Logos Execution Zone (LEZ) Token program.
 
 Set a mint authority at token creation, mint gated by that authority, rotate control to a new admin, or permanently revoke — enabling fixed-supply, variable-supply, and governance-handoff token patterns.
@@ -89,6 +91,50 @@ new-with-authority → rotate-authority → (new admin takes over)
 ```
 Transfer mint control to a DAO, multisig, or successor.
 
+## CLI Usage (LEZ Wallet)
+
+The following commands are available in the LEZ wallet after integrating the [fork](https://github.com/edenbd1/logos-execution-zone/tree/lp-0013-token-authorities):
+
+### 1. Create a token with mint authority
+
+```bash
+wallet token new-with-authority \
+  --definition-account-id Public/<DEF_ID> \
+  --supply-account-id Public/<SUPPLY_ID> \
+  --name "MyToken" \
+  --initial-supply 1000000 \
+  --authority Public/<AUTHORITY_ID>
+```
+
+### 2. Mint tokens (authority-gated)
+
+```bash
+wallet token mint-with-authority \
+  --definition Public/<DEF_ID> \
+  --holder Public/<HOLDER_ID> \
+  --amount 5000 \
+  --authority-signer Public/<AUTHORITY_ID>
+```
+
+### 3. Rotate authority to a new admin
+
+```bash
+wallet token rotate-authority \
+  --definition Public/<DEF_ID> \
+  --new-authority Public/<NEW_ADMIN_ID> \
+  --authority-signer Public/<CURRENT_AUTHORITY_ID>
+```
+
+### 4. Permanently revoke authority (fixed supply)
+
+```bash
+wallet token revoke-authority \
+  --definition Public/<DEF_ID> \
+  --authority-signer Public/<AUTHORITY_ID>
+```
+
+All account arguments accept labels or `Public/<base58>` / `Private/<base58>` prefixes. Authority operations require public accounts.
+
 ## Repository Structure
 
 ```
@@ -100,6 +146,7 @@ crates/
 examples/
   fixed-supply/               Mint-then-revoke pattern
   variable-supply/            Rotatable authority pattern
+  config-pda-gate/            RFP-001 §4: non-token config PDA gating
 integration_tests/            6 end-to-end handler-pipeline tests
 artifacts/
   token.idl.json              Canonical IDL (SpelIdl format)

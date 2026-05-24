@@ -52,7 +52,10 @@ fn main() {
 
     // Initialize config with admin
     let mut config = ProgramConfig::new(admin, 30);
-    println!("[1] Config initialized: fee_bps={}, admin set", config.fee_bps);
+    println!(
+        "[1] Config initialized: fee_bps={}, admin set",
+        config.fee_bps
+    );
 
     // Admin updates fee
     config.update_fee(admin, 50);
