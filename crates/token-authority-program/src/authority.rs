@@ -1,6 +1,6 @@
 #![expect(
     clippy::needless_pass_by_value,
-    reason = "authority_account comes from pre_states array destructuring and matches the codebase convention"
+    reason = "AccountWithMetadata comes from pre_states array destructuring"
 )]
 
 use nssa_core::{
@@ -56,16 +56,11 @@ pub fn new_fungible_definition_with_authority(
 pub fn mint_with_authority(
     definition_account: AccountWithMetadata,
     user_holding_account: AccountWithMetadata,
-    authority_account: AccountWithMetadata,
     amount_to_mint: u128,
 ) -> Vec<AccountPostState> {
     assert!(
         definition_account.is_authorized,
         "Definition authorization is missing"
-    );
-    assert!(
-        authority_account.is_authorized,
-        "Authority signer authorization is missing"
     );
 
     let mut definition = TokenDefinition::try_from(&definition_account.account.data)
@@ -74,7 +69,7 @@ pub fn mint_with_authority(
     let authority = definition
         .authority()
         .expect("Token definition must have an authority");
-    authority.gate(authority_account.account_id);
+    authority.gate(definition_account.account_id);
 
     let mut holding = if user_holding_account.account == Account::default() {
         TokenHolding::zeroized_from_definition(definition_account.account_id, &definition)
@@ -120,16 +115,11 @@ pub fn mint_with_authority(
 #[must_use]
 pub fn rotate_authority(
     definition_account: AccountWithMetadata,
-    authority_account: AccountWithMetadata,
     new_authority: AccountId,
 ) -> Vec<AccountPostState> {
     assert!(
         definition_account.is_authorized,
         "Definition authorization is missing"
-    );
-    assert!(
-        authority_account.is_authorized,
-        "Authority signer authorization is missing"
     );
 
     let mut definition = TokenDefinition::try_from(&definition_account.account.data)
@@ -138,7 +128,7 @@ pub fn rotate_authority(
     let authority = definition
         .authority_mut()
         .expect("Token definition must have an authority");
-    authority.rotate(authority_account.account_id, new_authority);
+    authority.rotate(definition_account.account_id, new_authority);
 
     let mut definition_post = definition_account.account;
     definition_post.data = Data::from(&definition);
@@ -147,17 +137,10 @@ pub fn rotate_authority(
 }
 
 #[must_use]
-pub fn revoke_authority(
-    definition_account: AccountWithMetadata,
-    authority_account: AccountWithMetadata,
-) -> Vec<AccountPostState> {
+pub fn revoke_authority(definition_account: AccountWithMetadata) -> Vec<AccountPostState> {
     assert!(
         definition_account.is_authorized,
         "Definition authorization is missing"
-    );
-    assert!(
-        authority_account.is_authorized,
-        "Authority signer authorization is missing"
     );
 
     let mut definition = TokenDefinition::try_from(&definition_account.account.data)
@@ -166,7 +149,7 @@ pub fn revoke_authority(
     let authority = definition
         .authority_mut()
         .expect("Token definition must have an authority");
-    authority.revoke(authority_account.account_id);
+    authority.revoke(definition_account.account_id);
 
     let mut definition_post = definition_account.account;
     definition_post.data = Data::from(&definition);

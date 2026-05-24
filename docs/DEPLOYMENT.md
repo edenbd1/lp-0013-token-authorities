@@ -93,3 +93,25 @@ The authority instructions add minimal overhead vs baseline:
 `FungibleWithAuthority` occupies 33 bytes more than `Fungible`:
 - 1 byte: `Option` discriminant (`Some`/`None`)
 - 32 bytes: `AccountId` payload (when authority is active)
+
+## Confirmed On-Chain Lifecycle (Standalone Sequencer)
+
+Full lifecycle confirmed against native standalone sequencer (`cargo build --release --features standalone -p sequencer_service`):
+
+```
+[1/4] NewFungibleDefinitionWithAuthority (supply=1000, authority=DEF)
+  supply=1000 nonce=1
+
+[2/4] MintWithAuthority 500
+  supply=1500 nonce=2
+
+[3/4] RevokeAuthority
+  supply=1500 nonce=3
+
+[4/4] MintWithAuthority after revoke
+  REJECTED by sequencer:
+  "Guest panicked: Renounced: authority has been permanently revoked"
+  tx hash: 5ac465189b122045ef17c1123e4ecfd1acb6fd8fd07a61d57ebc9d311551deb8
+```
+
+Token ImageID: `363204b8c92d5fd683b9f3d28f0b54022c99e6641dd452d7199b78b8fec8742d`
