@@ -1,0 +1,11 @@
+[package]
+name = "example-fixed-supply"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+publish = false
+
+[dependencies]
+lez-approval = { path = "../../crates/lez-approval" }
+token-authority-core = { path = "../../crates/token-authority-core" }
+nssa_core = { git = "https://github.com/logos-blockchain/logos-execution-zone.git", rev = "006647b" }
