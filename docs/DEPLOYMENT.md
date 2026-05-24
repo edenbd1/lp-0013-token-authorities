@@ -4,8 +4,34 @@
 
 - Rust stable toolchain
 - Risc0 toolchain (`cargo-risczero 3.0.5`, `r0vm 3.0.5`)
-- Docker + Docker Compose
 - The [LEZ fork](https://github.com/edenbd1/logos-execution-zone/tree/lp-0013-token-authorities) (for wallet CLI and sequencer)
+
+## Running the Standalone Sequencer
+
+The sequencer can run natively on Apple Silicon (no Docker needed) using the `standalone` feature, which replaces the Bedrock and Indexer clients with mocks:
+
+```bash
+cd logos-execution-zone
+cargo build --release --features standalone -p sequencer_service
+./target/release/sequencer_service sequencer/service/configs/debug/sequencer_config.json --port 3040
+```
+
+This starts a local sequencer on `http://127.0.0.1:3040` with genesis accounts pre-funded.
+
+## On-Chain Verification
+
+### Confirmed on standalone sequencer
+
+`NewFungibleDefinitionWithAuthority` — token "DEMO" with initial supply 1000 and separate authority account:
+
+```
+Account: Dj3r4Z55sDxm6RgpM9KS8w3NL9KW2A421EEEL9pcqUUH
+Data:    [2, 4,0,0,0, 68,69,77,79, 232,3,0,..., authority_id]
+         ^variant    ^name="DEMO"  ^supply=1000
+Nonce:   1 (confirmed in block)
+```
+
+Verified via JSON-RPC `getAccount` against the standalone sequencer.
 
 ## Building Guest ELFs
 
