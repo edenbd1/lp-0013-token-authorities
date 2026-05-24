@@ -8,6 +8,7 @@ members = [
   "integration_tests",
   "examples/fixed-supply",
   "examples/variable-supply",
+  "examples/config-pda-gate",
 ]
 
 [workspace.package]
