@@ -1,0 +1,12 @@
+/Users/eden/data/ns.com/lp-0013-standalone/spel-sidecar/target/debug/deps/risc0_binfmt-657c8aa396afdbfd.d: /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/lib.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/addr.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/elf.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/exit_code.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/hash.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/image.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/povw.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/sys_state.rs
+
+/Users/eden/data/ns.com/lp-0013-standalone/spel-sidecar/target/debug/deps/librisc0_binfmt-657c8aa396afdbfd.rmeta: /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/lib.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/addr.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/elf.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/exit_code.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/hash.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/image.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/povw.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/sys_state.rs
+
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/lib.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/addr.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/elf.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/exit_code.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/hash.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/image.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/povw.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/risc0-binfmt-3.0.4/src/sys_state.rs:

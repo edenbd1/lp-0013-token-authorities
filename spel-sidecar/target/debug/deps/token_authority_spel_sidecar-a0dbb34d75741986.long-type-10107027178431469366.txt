@@ -1,0 +1,1 @@
+std::vec::Vec<nssa_core::program::AccountPostState>: Extend<spel_framework::prelude::AccountPostState>

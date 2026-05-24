@@ -1,0 +1,12 @@
+[workspace]
+
+[package]
+name = "token-authority-spel-sidecar"
+version = "0.1.0"
+edition = "2021"
+publish = false
+
+[dependencies]
+spel-framework = { git = "https://github.com/logos-co/spel.git", tag = "v0.4.0" }
+nssa_core = { git = "https://github.com/logos-blockchain/logos-execution-zone.git", rev = "006647b", features = ["host"] }
+serde = { version = "1", features = ["derive"] }

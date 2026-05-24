@@ -17,7 +17,7 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 | Criterion | Evidence |
 |---|---|
 | Module/SDK for building Logos modules | `crates/token-authority-sdk/` re-exports key types and documents the transaction construction pattern for all four authority instructions. Wallet facade methods in the LEZ fork: `wallet/src/program_facades/token.rs`. CLI subcommands: `new-with-authority`, `mint-with-authority`, `rotate-authority`, `revoke-authority`. |
-| IDL for the updated token program using SPEL | `artifacts/token.idl.json` — hand-authored canonical IDL conforming to `SpelIdl`, covering all 11 instruction variants, 3 account types, 4 custom types, and 2 error codes. |
+| IDL for the updated token program using SPEL | **Two IDLs shipped:** (1) `artifacts/token.idl.json` — hand-authored canonical IDL (completeness — includes account data types and error table). (2) `artifacts/token_authority.idl.spel.json` — real `spel -- generate-idl` output from the `spel-sidecar/` scaffold (provenance — proves the shape parses through SPEL's macro grammar). Workaround rationale in `docs/SPEL_STATUS.md`. |
 
 ## Reliability
 

@@ -1,0 +1,99 @@
+{
+  "version": "0.1.0",
+  "name": "token_authority",
+  "instructions": [
+    {
+      "name": "new_fungible_definition_with_authority",
+      "accounts": [
+        {
+          "name": "definition",
+          "writable": true,
+          "signer": true,
+          "init": true
+        },
+        {
+          "name": "holding",
+          "writable": true,
+          "signer": true,
+          "init": true
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "type": "string"
+        },
+        {
+          "name": "initial_supply",
+          "type": "u128"
+        },
+        {
+          "name": "authority",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "mint_with_authority",
+      "accounts": [
+        {
+          "name": "definition",
+          "writable": true,
+          "signer": true,
+          "init": false
+        },
+        {
+          "name": "holding",
+          "writable": true,
+          "signer": false,
+          "init": false
+        }
+      ],
+      "args": [
+        {
+          "name": "amount_to_mint",
+          "type": "u128"
+        }
+      ]
+    },
+    {
+      "name": "rotate_authority",
+      "accounts": [
+        {
+          "name": "definition",
+          "writable": true,
+          "signer": true,
+          "init": false
+        }
+      ],
+      "args": [
+        {
+          "name": "new_authority",
+          "type": {
+            "array": [
+              "u8",
+              32
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "revoke_authority",
+      "accounts": [
+        {
+          "name": "definition",
+          "writable": true,
+          "signer": true,
+          "init": false
+        }
+      ],
+      "args": []
+    }
+  ]
+}

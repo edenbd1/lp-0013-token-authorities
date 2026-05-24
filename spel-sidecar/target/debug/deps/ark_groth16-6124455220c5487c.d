@@ -1,0 +1,10 @@
+/Users/eden/data/ns.com/lp-0013-standalone/spel-sidecar/target/debug/deps/ark_groth16-6124455220c5487c.d: /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/lib.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/r1cs_to_qap.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/data_structures.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/generator.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/prover.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/verifier.rs
+
+/Users/eden/data/ns.com/lp-0013-standalone/spel-sidecar/target/debug/deps/libark_groth16-6124455220c5487c.rmeta: /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/lib.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/r1cs_to_qap.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/data_structures.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/generator.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/prover.rs /Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/verifier.rs
+
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/lib.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/r1cs_to_qap.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/data_structures.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/generator.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/prover.rs:
+/Users/eden/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ark-groth16-0.5.0/src/verifier.rs:
