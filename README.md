@@ -14,7 +14,7 @@ Set a mint authority at token creation, mint gated by that authority, rotate con
 # Build everything.
 cargo build --release --workspace
 
-# Run all 76 tests (13 lez-approval + 55 token-authority-program + 6 integration + 2 SDK).
+# Run all 71 tests (13 lez-approval + 55 token-authority-program + 6 integration + 2 SDK).
 cargo test --workspace --release
 
 # Run the fixed-supply example.
@@ -43,7 +43,7 @@ Four new instruction variants layered additively on the existing Token program �
 ┌──────────────▼──────────────────────┐
 │     token-authority-program         │
 │  authority.rs · burn.rs · mint.rs   │
-│  55 unit tests                      │
+│  50 unit tests                      │
 └──────────────┬──────────────────────┘
                │
 ┌──────────────▼──────────────────────┐
@@ -141,7 +141,7 @@ All account arguments accept labels or `Public/<base58>` / `Private/<base58>` pr
 crates/
   lez-approval/              RFP-001 agnostic approval library (13 tests)
   token-authority-core/       Extended instruction & definition types
-  token-authority-program/    Handler implementations (55 tests)
+  token-authority-program/    Handler implementations (50 tests)
   token-authority-sdk/        Type re-exports and TX construction docs
 examples/
   fixed-supply/               Mint-then-revoke pattern
@@ -168,13 +168,13 @@ The standalone crates in this repo are integrated into the actual LEZ token prog
 ## Testing
 
 ```bash
-# All 76 tests.
+# All 71 tests.
 cargo test --workspace --release
 
 # Just the approval library.
 cargo test -p lez-approval
 
-# Just the token program (55 tests including authority).
+# Just the token program (50 tests including authority).
 cargo test -p token-authority-program
 
 # Integration tests (full handler pipeline).

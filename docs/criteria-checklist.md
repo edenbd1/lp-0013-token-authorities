@@ -38,10 +38,10 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 |---|---|
 | Updated token program deployed and tested on LEZ devnet/testnet | `scripts/demo.sh` runs the full lifecycle against a docker-compose standalone LEZ sequencer (run from the [LEZ fork](https://github.com/edenbd1/logos-execution-zone/tree/lp-0013-token-authorities)). |
 | End-to-end integration tests against LEZ sequencer in CI | `integration_tests/` — 6 handler-pipeline tests exercising the full pre_state → handler → post_state lifecycle (create+mint, rotate+mint, revoke+reject, wrong-signer reject, unsigned-authority reject, burn on authority tokens). Sequencer-level E2E via `scripts/demo.sh` in the LEZ fork. |
-| CI green on default branch | `.github/workflows/ci.yml` — build, clippy, fmt, test. All 76 tests pass. **[CI green](https://github.com/edenbd1/lp-0013-token-authorities/actions).** |
+| CI green on default branch | `.github/workflows/ci.yml` — build, clippy, fmt, test. All 71 tests pass. **[CI green](https://github.com/edenbd1/lp-0013-token-authorities/actions).** |
 | README documents end-to-end usage | `README.md` covers quickstart, architecture, CLI commands, deployment steps. `docs/` covers architecture, design, error codes, security, benchmarks. |
 | Reproducible demo with `RISC0_DEV_MODE=0` | `scripts/demo.sh` — full create → mint → rotate → mint → revoke → verify-rejection lifecycle (run from the LEZ fork). |
-| Narrated video walkthrough | _pending_ |
+| Narrated video walkthrough | See submission PR for link. |
 
 ## Submission requirements
 
@@ -50,5 +50,5 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 | Public repository under MIT or Apache-2.0 | Dual-licensed; `LICENSE-MIT` + `LICENSE-APACHE` + `NOTICE` |
 | Code changes to the token program | Complete implementation in `crates/token-authority-program/`. Integration into LEZ fork at `edenbd1/logos-execution-zone` branch `lp-0013-token-authorities`. |
 | README + design docs | `README.md`, `docs/architecture.md`, `docs/design.md`, `docs/error-codes.md`, `docs/security.md`, `docs/criteria-checklist.md` |
-| Tests and example programmes/scripts | 76 tests total (13 lez-approval + 55 token-authority-program + 6 integration + 2 SDK) + 2 runnable example programs |
-| Narrated video walkthrough | _pending_ |
+| Tests and example programmes/scripts | 71 tests total (13 lez-approval + 50 token-authority-program + 6 integration + 2 SDK) + 2 runnable example programs |
+| Narrated video walkthrough | See submission PR for link. |
