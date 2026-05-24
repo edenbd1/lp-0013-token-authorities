@@ -1088,7 +1088,10 @@ fn make_authority_definition_with_id(
 }
 
 fn make_authority_definition(authority: Authority) -> AccountWithMetadata {
-    let admin = authority.admin().unwrap_or(authority_admin_id());
+    let admin = authority
+        .admin()
+        .map(AccountId::new)
+        .unwrap_or(authority_admin_id());
     make_authority_definition_with_id(authority, admin)
 }
 
@@ -1113,7 +1116,7 @@ fn new_definition_with_authority_succeeds() {
             total_supply,
             ..
         } => {
-            assert_eq!(authority.admin(), Some(authority_admin_id()));
+            assert_eq!(authority.admin(), Some(authority_admin_id().into_value()));
             assert_eq!(total_supply, 1000);
         }
         _ => panic!("Expected FungibleWithAuthority"),
@@ -1155,7 +1158,8 @@ fn new_definition_with_authority_non_default_holding_fails() {
 
 #[test]
 fn mint_with_authority_succeeds() {
-    let definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
     let holding_account = AccountForTests::holding_account_uninit();
 
     let post_states = mint_with_authority(definition_account, holding_account, 500);
@@ -1179,7 +1183,7 @@ fn mint_with_authority_succeeds() {
 #[should_panic(expected = "Unauthorized")]
 fn mint_with_authority_wrong_signer_panics() {
     let definition_account = make_authority_definition_with_id(
-        Authority::new(authority_admin_id()),
+        Authority::new(authority_admin_id().into_value()),
         authority_other_id(),
     );
     let holding_account = AccountForTests::holding_account_uninit();
@@ -1190,7 +1194,8 @@ fn mint_with_authority_wrong_signer_panics() {
 #[test]
 #[should_panic(expected = "Definition authorization is missing")]
 fn mint_with_authority_unsigned_definition_panics() {
-    let mut definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let mut definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
     definition_account.is_authorized = false;
     let holding_account = AccountForTests::holding_account_uninit();
 
@@ -1218,7 +1223,8 @@ fn mint_with_authority_on_plain_fungible_panics() {
 #[test]
 #[should_panic(expected = "Use MintWithAuthority for authority-gated tokens")]
 fn regular_mint_on_authority_token_panics() {
-    let definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
     let holding_account = AccountForTests::holding_account_uninit();
 
     let _post_states = mint(definition_account, holding_account, 500);
@@ -1226,7 +1232,8 @@ fn regular_mint_on_authority_token_panics() {
 
 #[test]
 fn rotate_authority_succeeds() {
-    let definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
 
     let post_states = rotate_authority(definition_account, authority_new_admin_id());
 
@@ -1234,7 +1241,10 @@ fn rotate_authority_succeeds() {
     let def: TokenDefinition = TokenDefinition::try_from(&def_post.account().data).unwrap();
     match def {
         TokenDefinition::FungibleWithAuthority { authority, .. } => {
-            assert_eq!(authority.admin(), Some(authority_new_admin_id()));
+            assert_eq!(
+                authority.admin(),
+                Some(authority_new_admin_id().into_value())
+            );
         }
         _ => panic!("Expected FungibleWithAuthority"),
     }
@@ -1244,7 +1254,7 @@ fn rotate_authority_succeeds() {
 #[should_panic(expected = "Unauthorized")]
 fn rotate_authority_wrong_signer_panics() {
     let definition_account = make_authority_definition_with_id(
-        Authority::new(authority_admin_id()),
+        Authority::new(authority_admin_id().into_value()),
         authority_other_id(),
     );
 
@@ -1253,7 +1263,8 @@ fn rotate_authority_wrong_signer_panics() {
 
 #[test]
 fn revoke_authority_succeeds() {
-    let definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
 
     let post_states = revoke_authority(definition_account);
 
@@ -1271,7 +1282,7 @@ fn revoke_authority_succeeds() {
 #[should_panic(expected = "Unauthorized")]
 fn revoke_authority_wrong_signer_panics() {
     let definition_account = make_authority_definition_with_id(
-        Authority::new(authority_admin_id()),
+        Authority::new(authority_admin_id().into_value()),
         authority_other_id(),
     );
 
@@ -1280,7 +1291,8 @@ fn revoke_authority_wrong_signer_panics() {
 
 #[test]
 fn rotate_then_mint_with_new_admin_succeeds() {
-    let definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
 
     let post_states = rotate_authority(definition_account, authority_new_admin_id());
 
@@ -1321,7 +1333,8 @@ fn rotate_after_revoke_panics() {
 
 #[test]
 fn burn_fungible_with_authority_succeeds() {
-    let definition_account = make_authority_definition(Authority::new(authority_admin_id()));
+    let definition_account =
+        make_authority_definition(Authority::new(authority_admin_id().into_value()));
     let holding_account = AccountWithMetadata {
         account: Account {
             program_owner: [5_u32; 8],

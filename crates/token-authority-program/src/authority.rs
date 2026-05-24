@@ -28,7 +28,7 @@ pub fn new_fungible_definition_with_authority(
         name,
         total_supply: initial_supply,
         metadata_id: None,
-        authority: Authority::new(authority),
+        authority: Authority::new(authority.into_value()),
     };
     let token_holding = TokenHolding::Fungible {
         definition_id: definition_target_account.account_id,
@@ -64,7 +64,7 @@ pub fn mint_with_authority(
     let authority = definition
         .authority()
         .expect("Token definition must have an authority");
-    authority.gate(definition_account.account_id);
+    authority.gate(definition_account.account_id.into_value());
 
     let mut holding = if user_holding_account.account == Account::default() {
         TokenHolding::zeroized_from_definition(definition_account.account_id, &definition)
@@ -123,7 +123,10 @@ pub fn rotate_authority(
     let authority = definition
         .authority_mut()
         .expect("Token definition must have an authority");
-    authority.rotate(definition_account.account_id, new_authority);
+    authority.rotate(
+        definition_account.account_id.into_value(),
+        new_authority.into_value(),
+    );
 
     let mut definition_post = definition_account.account;
     definition_post.data = Data::from(&definition);
@@ -144,7 +147,7 @@ pub fn revoke_authority(definition_account: AccountWithMetadata) -> Vec<AccountP
     let authority = definition
         .authority_mut()
         .expect("Token definition must have an authority");
-    authority.revoke(definition_account.account_id);
+    authority.revoke(definition_account.account_id.into_value());
 
     let mut definition_post = definition_account.account;
     definition_post.data = Data::from(&definition);

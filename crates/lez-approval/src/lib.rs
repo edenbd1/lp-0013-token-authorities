@@ -1,6 +1,33 @@
+//! Agnostic single-admin approval library for LEZ programs.
+//!
+//! Provides a reusable `Authority` primitive with `gate`, `rotate`, and `revoke`
+//! operations. Satisfies [RFP-001](https://github.com/logos-co/rfp/blob/master/RFPs/RFP-001-admin-authority-lib.md).
+//!
+//! # Usage
+//!
+//! ```
+//! use lez_approval::Authority;
+//!
+//! let admin = [1u8; 32];
+//! let mut auth = Authority::new(admin);
+//!
+//! // Only the admin can call gated operations.
+//! auth.gate(admin); // OK
+//!
+//! // Rotate to a new admin.
+//! let new_admin = [2u8; 32];
+//! auth.rotate(admin, new_admin);
+//!
+//! // Permanently revoke — terminal, cannot be reversed.
+//! auth.revoke(new_admin);
+//! assert!(auth.is_renounced());
+//! ```
+
 use borsh::{BorshDeserialize, BorshSerialize};
-use nssa_core::account::AccountId;
 use serde::{Deserialize, Serialize};
+
+/// A 32-byte account identifier, compatible with `nssa_core::account::AccountId`.
+pub type AccountId = [u8; 32];
 
 #[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize, BorshSerialize, BorshDeserialize)]
 pub struct Authority(Option<AccountId>);
@@ -66,15 +93,15 @@ mod tests {
     use super::*;
 
     fn admin_id() -> AccountId {
-        AccountId::new([1; 32])
+        [1; 32]
     }
 
     fn other_id() -> AccountId {
-        AccountId::new([2; 32])
+        [2; 32]
     }
 
     fn new_admin_id() -> AccountId {
-        AccountId::new([3; 32])
+        [3; 32]
     }
 
     #[test]

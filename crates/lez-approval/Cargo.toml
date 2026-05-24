@@ -4,8 +4,10 @@ version = "0.1.0"
 edition = "2021"
 license = "MIT OR Apache-2.0"
 description = "Agnostic single-admin approval library for LEZ programs (RFP-001)"
+repository = "https://github.com/edenbd1/lp-0013-token-authorities"
+keywords = ["logos", "lez", "authority", "approval", "admin"]
+categories = ["cryptography", "no-std"]
 
 [dependencies]
-nssa_core = { git = "https://github.com/logos-blockchain/logos-execution-zone.git", rev = "006647b" }
-borsh = "1.5"
+borsh = { version = "1.5", features = ["derive"] }
 serde = { version = "1.0", features = ["derive"] }

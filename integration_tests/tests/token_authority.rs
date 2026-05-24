@@ -29,7 +29,7 @@ fn uninit_account(id: AccountId) -> AccountWithMetadata {
 }
 
 fn make_def(total_supply: u128, authority: Authority) -> AccountWithMetadata {
-    let admin = authority.admin().unwrap_or(admin_id());
+    let admin = authority.admin().map(AccountId::new).unwrap_or(admin_id());
     AccountWithMetadata {
         account: Account {
             program_owner: [5_u32; 8],
@@ -119,7 +119,7 @@ fn mint_after_revoke_is_rejected() {
 #[test]
 #[should_panic(expected = "Unauthorized")]
 fn wrong_signer_is_rejected() {
-    let mut def = make_def(1000, Authority::new(admin_id()));
+    let mut def = make_def(1000, Authority::new(admin_id().into_value()));
     def.account_id = AccountId::new([99; 32]); // wrong signer
     let _posts = mint_with_authority(def, uninit_account(holding_id()), 100);
 }
@@ -127,14 +127,14 @@ fn wrong_signer_is_rejected() {
 #[test]
 #[should_panic(expected = "Definition authorization is missing")]
 fn unsigned_definition_is_rejected() {
-    let mut def = make_def(1000, Authority::new(admin_id()));
+    let mut def = make_def(1000, Authority::new(admin_id().into_value()));
     def.is_authorized = false;
     let _posts = mint_with_authority(def, uninit_account(holding_id()), 100);
 }
 
 #[test]
 fn burn_works_on_authority_tokens() {
-    let def = make_def(1000, Authority::new(admin_id()));
+    let def = make_def(1000, Authority::new(admin_id().into_value()));
     let holding = make_holding(admin_id(), 500);
 
     let posts = burn(def, holding, 200);
