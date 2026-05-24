@@ -1,0 +1,11 @@
+[package]
+name = "lez-approval"
+version = "0.1.0"
+edition = "2021"
+license = "MIT OR Apache-2.0"
+description = "Agnostic single-admin approval library for LEZ programs (RFP-001)"
+
+[dependencies]
+nssa_core = { git = "https://github.com/logos-blockchain/logos-execution-zone.git", rev = "006647b" }
+borsh = "1.5"
+serde = { version = "1.0", features = ["derive"] }
