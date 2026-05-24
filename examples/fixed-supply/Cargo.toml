@@ -8,4 +8,3 @@ publish = false
 [dependencies]
 lez-approval = { path = "../../crates/lez-approval" }
 token-authority-core = { path = "../../crates/token-authority-core" }
-nssa_core = { git = "https://github.com/logos-blockchain/logos-execution-zone.git", rev = "006647b" }

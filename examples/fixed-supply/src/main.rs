@@ -4,11 +4,11 @@
 //! permanently revoke the authority so no further minting is possible.
 
 use lez_approval::Authority;
-use nssa_core::account::AccountId;
+
 use token_authority_core::TokenDefinition;
 
 fn main() {
-    let admin = AccountId::new([1; 32]);
+    let admin = [1u8; 32];
 
     println!("=== Fixed-Supply Token Example ===\n");
 

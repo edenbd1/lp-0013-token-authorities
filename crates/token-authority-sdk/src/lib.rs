@@ -40,17 +40,15 @@
 pub use lez_approval::{ApprovalError, Authority};
 pub use token_authority_core::{Instruction, TokenDefinition, TokenHolding};
 
-pub use nssa_core::account::AccountId;
-
 #[cfg(test)]
 mod tests {
     use super::*;
 
     #[test]
     fn authority_roundtrip() {
-        let admin = AccountId::new([42; 32]);
-        let auth = Authority::new(admin);
-        assert_eq!(auth.admin(), Some(admin));
+        let admin = nssa_core::account::AccountId::new([42; 32]);
+        let auth = Authority::new(admin.into_value());
+        assert_eq!(auth.admin(), Some(admin.into_value()));
         assert!(!auth.is_renounced());
     }
 
@@ -59,13 +57,13 @@ mod tests {
         let _create = Instruction::NewFungibleDefinitionWithAuthority {
             name: "test".into(),
             initial_supply: 1000,
-            authority: AccountId::new([1; 32]),
+            authority: nssa_core::account::AccountId::new([1; 32]),
         };
         let _mint = Instruction::MintWithAuthority {
             amount_to_mint: 500,
         };
         let _rotate = Instruction::RotateAuthority {
-            new_authority: AccountId::new([2; 32]),
+            new_authority: nssa_core::account::AccountId::new([2; 32]),
         };
         let _revoke = Instruction::RevokeAuthority;
     }

@@ -4,12 +4,12 @@
 //! to a new admin, new admin mints more. Old admin is rejected.
 
 use lez_approval::Authority;
-use nssa_core::account::AccountId;
+
 use token_authority_core::TokenDefinition;
 
 fn main() {
-    let admin_a = AccountId::new([1; 32]);
-    let admin_b = AccountId::new([2; 32]);
+    let admin_a = [1u8; 32];
+    let admin_b = [2u8; 32];
 
     println!("=== Variable-Supply Token Example ===\n");
 

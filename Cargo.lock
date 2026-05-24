@@ -708,7 +708,6 @@ version = "0.1.0"
 dependencies = [
  "borsh",
  "lez-approval",
- "nssa_core",
 ]
 
 [[package]]
@@ -716,7 +715,6 @@ name = "example-fixed-supply"
 version = "0.1.0"
 dependencies = [
  "lez-approval",
- "nssa_core",
  "token-authority-core",
 ]
 
@@ -725,7 +723,6 @@ name = "example-variable-supply"
 version = "0.1.0"
 dependencies = [
  "lez-approval",
- "nssa_core",
  "token-authority-core",
 ]
 

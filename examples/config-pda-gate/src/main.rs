@@ -5,8 +5,7 @@
 //! only one who can update the program's configuration PDA.
 
 use borsh::{BorshDeserialize, BorshSerialize};
-use lez_approval::Authority;
-use nssa_core::account::AccountId;
+use lez_approval::{AccountId, Authority};
 
 #[derive(Debug, BorshSerialize, BorshDeserialize)]
 struct ProgramConfig {
@@ -44,9 +43,9 @@ impl ProgramConfig {
 }
 
 fn main() {
-    let admin = AccountId::new([1; 32]);
-    let new_admin = AccountId::new([2; 32]);
-    let attacker = AccountId::new([99; 32]);
+    let admin = [1u8; 32];
+    let new_admin = [2u8; 32];
+    let attacker = [99u8; 32];
 
     println!("=== Config PDA Gating Example (RFP-001 §4) ===\n");
 
