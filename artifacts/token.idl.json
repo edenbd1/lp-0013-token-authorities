@@ -1,0 +1,246 @@
+{
+  "version": "0.1.0",
+  "name": "token_program",
+  "instructions": [
+    {
+      "name": "Transfer",
+      "accounts": [
+        { "name": "sender", "isMut": true, "isSigner": true },
+        { "name": "recipient", "isMut": true, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount_to_transfer", "type": "u128" }
+      ]
+    },
+    {
+      "name": "NewFungibleDefinition",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "holding", "isMut": true, "isSigner": true }
+      ],
+      "args": [
+        { "name": "name", "type": "string" },
+        { "name": "total_supply", "type": "u128" }
+      ]
+    },
+    {
+      "name": "NewDefinitionWithMetadata",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "holding", "isMut": true, "isSigner": true },
+        { "name": "metadata", "isMut": true, "isSigner": true }
+      ],
+      "args": [
+        { "name": "new_definition", "type": { "defined": "NewTokenDefinition" } },
+        { "name": "metadata", "type": { "defined": "NewTokenMetadata" } }
+      ]
+    },
+    {
+      "name": "InitializeAccount",
+      "accounts": [
+        { "name": "definition", "isMut": false, "isSigner": false },
+        { "name": "holding", "isMut": true, "isSigner": true }
+      ],
+      "args": []
+    },
+    {
+      "name": "Burn",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": false },
+        { "name": "holding", "isMut": true, "isSigner": true }
+      ],
+      "args": [
+        { "name": "amount_to_burn", "type": "u128" }
+      ]
+    },
+    {
+      "name": "Mint",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "holding", "isMut": true, "isSigner": false }
+      ],
+      "args": [
+        { "name": "amount_to_mint", "type": "u128" }
+      ]
+    },
+    {
+      "name": "PrintNft",
+      "accounts": [
+        { "name": "master", "isMut": true, "isSigner": true },
+        { "name": "printed", "isMut": true, "isSigner": false }
+      ],
+      "args": []
+    },
+    {
+      "name": "NewFungibleDefinitionWithAuthority",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "holding", "isMut": true, "isSigner": true }
+      ],
+      "args": [
+        { "name": "name", "type": "string" },
+        { "name": "initial_supply", "type": "u128" },
+        { "name": "authority", "type": "publicKey" }
+      ]
+    },
+    {
+      "name": "MintWithAuthority",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "holding", "isMut": true, "isSigner": false },
+        { "name": "authority_signer", "isMut": false, "isSigner": true }
+      ],
+      "args": [
+        { "name": "amount_to_mint", "type": "u128" }
+      ]
+    },
+    {
+      "name": "RotateAuthority",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "authority_signer", "isMut": false, "isSigner": true }
+      ],
+      "args": [
+        { "name": "new_authority", "type": "publicKey" }
+      ]
+    },
+    {
+      "name": "RevokeAuthority",
+      "accounts": [
+        { "name": "definition", "isMut": true, "isSigner": true },
+        { "name": "authority_signer", "isMut": false, "isSigner": true }
+      ],
+      "args": []
+    }
+  ],
+  "accounts": [
+    {
+      "name": "TokenDefinition",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Fungible",
+            "fields": [
+              { "name": "name", "type": "string" },
+              { "name": "total_supply", "type": "u128" },
+              { "name": "metadata_id", "type": { "option": "publicKey" } }
+            ]
+          },
+          {
+            "name": "NonFungible",
+            "fields": [
+              { "name": "name", "type": "string" },
+              { "name": "printable_supply", "type": "u128" },
+              { "name": "metadata_id", "type": "publicKey" }
+            ]
+          },
+          {
+            "name": "FungibleWithAuthority",
+            "fields": [
+              { "name": "name", "type": "string" },
+              { "name": "total_supply", "type": "u128" },
+              { "name": "metadata_id", "type": { "option": "publicKey" } },
+              { "name": "authority", "type": { "defined": "Authority" } }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "TokenHolding",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Fungible",
+            "fields": [
+              { "name": "definition_id", "type": "publicKey" },
+              { "name": "balance", "type": "u128" }
+            ]
+          },
+          {
+            "name": "NftMaster",
+            "fields": [
+              { "name": "definition_id", "type": "publicKey" },
+              { "name": "print_balance", "type": "u128" }
+            ]
+          },
+          {
+            "name": "NftPrintedCopy",
+            "fields": [
+              { "name": "definition_id", "type": "publicKey" },
+              { "name": "owned", "type": "bool" }
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "types": [
+    {
+      "name": "Authority",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "admin", "type": { "option": "publicKey" } }
+        ]
+      }
+    },
+    {
+      "name": "NewTokenDefinition",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          {
+            "name": "Fungible",
+            "fields": [
+              { "name": "name", "type": "string" },
+              { "name": "total_supply", "type": "u128" }
+            ]
+          },
+          {
+            "name": "NonFungible",
+            "fields": [
+              { "name": "name", "type": "string" },
+              { "name": "printable_supply", "type": "u128" }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "name": "NewTokenMetadata",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          { "name": "standard", "type": { "defined": "MetadataStandard" } },
+          { "name": "uri", "type": "string" },
+          { "name": "creators", "type": "string" }
+        ]
+      }
+    },
+    {
+      "name": "MetadataStandard",
+      "type": {
+        "kind": "enum",
+        "variants": [
+          { "name": "Simple" },
+          { "name": "Expanded" }
+        ]
+      }
+    }
+  ],
+  "errors": [
+    {
+      "code": 2001,
+      "name": "Unauthorized",
+      "msg": "Signer is not the current authority"
+    },
+    {
+      "code": 2002,
+      "name": "Renounced",
+      "msg": "Authority has been permanently revoked"
+    }
+  ]
+}
