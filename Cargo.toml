@@ -1,0 +1,15 @@
+[workspace]
+resolver = "2"
+members = [
+  "crates/lez-approval",
+  "crates/token-authority-core",
+  "crates/token-authority-program",
+  "crates/token-authority-sdk",
+  "integration_tests",
+  "examples/fixed-supply",
+  "examples/variable-supply",
+]
+
+[workspace.package]
+edition = "2021"
+license = "MIT OR Apache-2.0"
