@@ -1,8 +1,11 @@
 # LP-0013: Token Program Improvements — Authorities
 
 [![CI](https://github.com/edenbd1/lp-0013-token-authorities/actions/workflows/ci.yml/badge.svg)](https://github.com/edenbd1/lp-0013-token-authorities/actions/workflows/ci.yml)
+[![crates.io](https://img.shields.io/crates/v/lez-approval.svg)](https://crates.io/crates/lez-approval)
 
 A rotatable mint authority model for the Logos Execution Zone (LEZ) Token program.
+
+**Reusable crate published on crates.io:** [`lez-approval`](https://crates.io/crates/lez-approval). Add `lez-approval = "0.1"` to your `Cargo.toml` to use the authority primitive without forking the repo.
 
 Set a mint authority at token creation, mint gated by that authority, rotate control to a new admin, or permanently revoke — enabling fixed-supply, variable-supply, and governance-handoff token patterns.
 
