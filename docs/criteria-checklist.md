@@ -41,7 +41,7 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 | CI green on default branch | `.github/workflows/ci.yml` — build, clippy, fmt, test. All 71 tests pass. **[CI green](https://github.com/edenbd1/lp-0013-token-authorities/actions).** |
 | README documents end-to-end usage | `README.md` covers quickstart, architecture, CLI commands, deployment steps. `docs/` covers architecture, design, error codes, security, benchmarks. |
 | Reproducible demo with `RISC0_DEV_MODE=0` | `scripts/demo.sh` — full create → mint → rotate → mint → revoke → verify-rejection lifecycle (run from the LEZ fork). |
-| Narrated video walkthrough | See submission PR for link. |
+| Narrated video walkthrough | [Narrated walkthrough](https://youtu.be/Um9cVHW226E) — architecture, live demo on standalone sequencer, code tour. |
 
 ## Submission requirements
 
@@ -51,4 +51,4 @@ Row-by-row mapping of every line in the LP-0013 prize text to the code, test, or
 | Code changes to the token program | Complete implementation in `crates/token-authority-program/`. Integration into LEZ fork at `edenbd1/logos-execution-zone` branch `lp-0013-token-authorities`. |
 | README + design docs | `README.md`, `docs/architecture.md`, `docs/design.md`, `docs/error-codes.md`, `docs/security.md`, `docs/criteria-checklist.md` |
 | Tests and example programmes/scripts | 71 tests total (13 lez-approval + 50 token-authority-program + 6 integration + 2 SDK) + 2 runnable example programs |
-| Narrated video walkthrough | See submission PR for link. |
+| Narrated video walkthrough | [Narrated walkthrough](https://youtu.be/Um9cVHW226E) — architecture, live demo on standalone sequencer, code tour. |
