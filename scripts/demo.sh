@@ -43,9 +43,7 @@ SEQ_PID=$!
 sleep 5
 
 cleanup() {
-  echo ""
-  echo "[cleanup] Stopping sequencer (PID $SEQ_PID)..."
-  kill "$SEQ_PID" 2>/dev/null || true
+  kill "$SEQ_PID" 2>/dev/null && wait "$SEQ_PID" 2>/dev/null || true
   rm -rf ./rocksdb /tmp/lp0013-seq.log "$WHOME" 2>/dev/null || true
 }
 trap cleanup EXIT
